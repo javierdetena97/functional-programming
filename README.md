@@ -1,1 +1,1 @@
-"Functional programming course from Amigoscode" 
+## Functional programming course from Amigoscode
