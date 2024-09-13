@@ -2,22 +2,21 @@ package com.amigoscode.functional_programming;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 @SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
-        Function<Integer, Integer> combinedFunction = incrementByOneFunc.andThen(doubleFunc);
-        System.out.println(combinedFunction.apply(1));
-        System.out.println(combinedFunction.apply(3));
+        Person jamila = personMapperBiFunc.apply("Jamila", 18);
+        System.out.println(jamila);
     }
 
-    static Function<Integer, Integer> incrementByOneFunc = n -> n + 1;
+    record Person(String name, int age) {}
 
-    static Function<Integer, Integer> doubleFunc = n -> n * 2;
+    static BiFunction<String, Integer, Person> personMapperBiFunc = Person::new;
 
-    static int incrementByOne(int n) {
-        return n + 1;
+    static Person personMapper(String name, int age) {
+        return new Person(name, age);
     }
 }
