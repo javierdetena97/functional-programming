@@ -2,22 +2,17 @@ package com.amigoscode.functional_programming;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 @SpringBootApplication
 public class FunctionalProgrammingApplication {
 
     public static void main(String[] args) {
-        EmailSender gmail = (from, to) -> {
-            System.out.println("Sending email using Gmail");
-            return false;
-        };
+        List<String> names = List.of("Jamila", "Alex", "Mariam");
+        Consumer<String> stringConsumer = name -> System.out.println(name);
 
-        EmailSender hotmail = (from, to) -> {
-            System.out.println("Sending email using Hotmail");
-            return true;
-        };
-
-        boolean wasGmailSent = gmail.send("hello@amigoscode.com", "alex@gmail.com");
-        boolean wasHotmailSent = hotmail.send("hello@amigoscode.com", "jamila@gmail.com");
+        names.forEach(stringConsumer);
+//        names.forEach(name -> System.out.println(name));
     }
-
 }
