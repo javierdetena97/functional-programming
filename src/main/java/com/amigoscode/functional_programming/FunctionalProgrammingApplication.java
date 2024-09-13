@@ -6,11 +6,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FunctionalProgrammingApplication {
 
     public static void main(String[] args) {
-        EmailSender gmail = () -> System.out.println("Sending email using Gmail");
-        EmailSender hotmail = () -> System.out.println("Sending email using Hotmail");
+        EmailSender gmail = (from, to) -> {
+            System.out.println("Sending email using Gmail");
+            return false;
+        };
 
-        gmail.send();
-        hotmail.send();
+        EmailSender hotmail = (from, to) -> {
+            System.out.println("Sending email using Hotmail");
+            return true;
+        };
+
+        boolean wasGmailSent = gmail.send("hello@amigoscode.com", "alex@gmail.com");
+        boolean wasHotmailSent = hotmail.send("hello@amigoscode.com", "jamila@gmail.com");
     }
 
 }
