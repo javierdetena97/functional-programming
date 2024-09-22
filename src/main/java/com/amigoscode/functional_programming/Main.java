@@ -8,15 +8,7 @@ import java.util.function.BiFunction;
 public class Main {
 
     public static void main(String[] args) {
-        Person jamila = personMapperBiFunc.apply("Jamila", 18);
-        System.out.println(jamila);
+        System.out.println("Functional Programming Course from Amigoscode");
     }
 
-    record Person(String name, int age) {}
-
-    static BiFunction<String, Integer, Person> personMapperBiFunc = Person::new;
-
-    static Person personMapper(String name, int age) {
-        return new Person(name, age);
-    }
 }
