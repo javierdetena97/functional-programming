@@ -3,27 +3,24 @@ package com.amigoscode.functional_programming;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 @SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
-//        sendEmail("jamila@amigoscode.com");
-        sendEmailConsumer.accept("jamila@amigoscode.com");
-        List<String> emails = List.of(
+        sendEmailBiConsumer.accept(
                 "hello@amigoscode.com",
-                "foo@amigoscode.com",
-                "bar@amigoscode.com"
+                "jamila@amigoscode.com"
         );
-        emails.forEach(Main::sendEmail);
     }
 
-    static Consumer<String> sendEmailConsumer =
-            email -> System.out.println("Sending email: " + email);
+    static BiConsumer<String, String> sendEmailBiConsumer =
+            (from, to) -> System.out.printf("Sending email from %s to %s%n", from, to);
 
-    static void sendEmail(String email) {
-        System.out.println("Sending email to: " + email);
+    static void sendEmail(String from, String to) {
+        System.out.printf("Sending email from %s to %s%n", from, to);
     }
 
 }
