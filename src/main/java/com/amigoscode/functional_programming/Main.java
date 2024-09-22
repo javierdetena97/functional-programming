@@ -2,21 +2,28 @@ package com.amigoscode.functional_programming;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.function.BiFunction;
+import java.util.List;
+import java.util.function.Consumer;
 
 @SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
-        Person jamila = personMapperBiFunc.apply("Jamila", 18);
-        System.out.println(jamila);
+//        sendEmail("jamila@amigoscode.com");
+        sendEmailConsumer.accept("jamila@amigoscode.com");
+        List<String> emails = List.of(
+                "hello@amigoscode.com",
+                "foo@amigoscode.com",
+                "bar@amigoscode.com"
+        );
+        emails.forEach(Main::sendEmail);
     }
 
-    record Person(String name, int age) {}
+    static Consumer<String> sendEmailConsumer =
+            email -> System.out.println("Sending email: " + email);
 
-    static BiFunction<String, Integer, Person> personMapperBiFunc = Person::new;
-
-    static Person personMapper(String name, int age) {
-        return new Person(name, age);
+    static void sendEmail(String email) {
+        System.out.println("Sending email to: " + email);
     }
+
 }
